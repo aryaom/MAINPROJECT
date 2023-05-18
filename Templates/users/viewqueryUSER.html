@@ -1,0 +1,39 @@
+{% extends 'users/Register_baseSECOND.html'%}
+{% block content %}
+<h5 class="text-black">query</h5>
+
+<table>
+    {% if data %}
+    {% for v in data %}
+
+    <div class="training">
+            <figure class="mb-4"></figure>
+      <tr>
+        <td>  <h6 class="text-black mb-3">Subject:</h6></td>
+          <td>  <h6 class="text-black mb-3">Add Query:</h6></td>
+        <td> <h6 class="text-black mb-3">File Upload:</h6></td>
+          <td><h6 class="text-black mb-3">Date:</h6></td>
+
+      </tr>
+        <tr>
+       <td> <p>{{v.subject}}</p></td>
+
+        <td> <p>{{v.addquery}}</p></td>
+
+        <td> <p>{{v.fileupload}}</p></td>
+
+            <td>   <p>{{v.date}}</p></td></tr>
+
+
+          </div>
+
+<hr/>
+
+
+    {% endfor %}
+    {% else %}
+list is empty
+{% endif %}
+</table>
+</div>
+{% endblock %}

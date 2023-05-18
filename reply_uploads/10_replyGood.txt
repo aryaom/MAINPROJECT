@@ -1,0 +1,1 @@
+php is a multiparadigm language'

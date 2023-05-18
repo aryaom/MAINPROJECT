@@ -1,0 +1,33 @@
+{% extends 'groupadmin/Register_baseSECOND.html'%}
+{% block content %}
+<table border="1" cellpadding="0" cellspacing="0">
+    {% if data %}
+    {% for v in data %}
+    <tr>
+    <th>name</th>
+     <th>gender</th>
+       <th>location</th>
+        <th>emailid</th>
+        <th>phone_num</th>
+        <th>qualification</th>
+        <th>experience</th>
+
+    </tr>
+    <tr>
+    <td>{{v.mentorname}}</td>
+    <td>{{v.gender}}</td>
+    <td>{{v.location}}</td>
+    <td>{{v.emailid}}</td>
+    <td>{{v.phoneno}}</td>
+      <td>{{v.qualification}}</td>
+        <td>{{v.experience}}</td>
+        <td>schedule <input type="checkbox" name="chk"></td>
+</tr>
+    <tr><td colspan="7">****************</td></tr>
+
+    {% endfor %}
+    {% else %}
+list is empty
+{% endif %}
+</table>
+{% endblock %}

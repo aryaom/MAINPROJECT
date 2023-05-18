@@ -1,0 +1,68 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container">
+        {% if data %}
+        <div class="text-center"><h3>User Details</h3></div>
+        {% for v in data %}
+        <div class="row p-3" style="margin:0 auto;width:100%;margin-top:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                <div class="row" style="height:40px;margin-top: 20px;">
+                    <div class="col" style="text-align: right;">First name :</div>
+                    <div class="col">{{v.fname}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Last name :</div>
+                    <div class="col">{{v.lastname}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Gender :</div>
+                    <div class="col">{{v.gender}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Location :</div>
+                    <div class="col">{{v.location}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Pin code :</div>
+                    <div class="col">{{v.pincode}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Email ID :</div>
+                    <div class="col">{{v.mailid}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Phone num :</div>
+                    <div class="col">{{v.phonenum}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Qualification :</div>
+                    <div class="col">{{v.qualification}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Experience :</div>
+                    <div class="col">{{v.experience}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Designation :</div>
+                    <div class="col">{{v.designation}}</div>
+                </div>
+                <div class="row"style="height:40px">
+                    <div class="col" style="text-align: right;">Company name :</div>
+                    <div class="col">{{v.companyname}}</div>
+                </div>
+        </div>
+        {% endfor %}
+        {% else %}
+            <div class="text-center">Empty</div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'users/base.html'%}
+{% block content %}
+
+
+<section id="testimonials" class="testimonials section-bg" style="min-height: 400px;">
+  <div class="container">
+    <div class="text-center" style="margin-top: 90px;"><h3>Queries and Replies</h3></div>
+    <div class="row">
+      {% if data %}
+      {% for v in data %}
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="testimonial-item mt-4">
+          <img src="/static/coach/images/question.jpg" class="testimonial-img" alt="">
+          <h3>{{v.query_id.subject}}</h3>
+          <h4>{{v.query_id.date}}</h4>
+          <p>
+            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+            {{v.query_id.addquery}}
+            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+          </p>
+          <p>click here to download attachment--->>><a href="{{v.query_id.fileupload.url}}" download="{{v.query_id.fileupload.url}}">{{v.query_id.fileupload}}</a></p>
+          <div style="box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);padding: 20px;margin-top:10px">
+          <h5 style="margin-top: 10px;color:black;font-weight: bolder;">Replies</h5>
+          <p>{{v.reply}}</p>
+          <p><a href="{{v.fileupload.url}}" download="{{v.fileupload.url}}">{{v.fileupload}}</a></p>
+          <p>{{v.date}}</p>
+           </div>
+           <div class="text-center" style="margin-top: 20px;"><a href="{% url 'viewrepliedmentors_details' v.mentor_id.id %}"  class="btn"style="background: #1bbd36;color: white;">Mentor Details</a></div>
+        </div>
+        
+      </div>
+      {% endfor %}
+      {% else %}
+        <div class="text-center" style="margin-top: 30px;">Empty</div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+
+
+         
+{% endblock %}

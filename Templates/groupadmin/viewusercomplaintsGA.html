@@ -1,0 +1,48 @@
+{% extends 'groupadmin/base.html'%}
+{% load parse_iso %}
+{% block content %}
+
+
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container">'
+        <div class="text-center"><h3>Complaints</h3></div>
+        <div class="row" style="margin:0 auto;width:100%;margin-top:20px;">
+            {%if data%}
+            <div >
+                <table style="border:1px solid #1bbd36;width:100%;margin-top: 30px;">
+                    <thead style="color: white;background: #1bbd36;text-align: center;height: 40px;">
+                    <tr >
+                        <th>User name</th>
+                        <th>Mentor name</th>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Details</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;"> 
+                {% for v in data %}
+                <tr  style="border-bottom:1px solid #1bbd36;height:50px">
+                    <td>    {{v.user_id.fname}}{{v.user_id.lname}} </td>
+                    <td>{{v.mentor_id.mentorname}}</td>
+            <td> {{ v.date|parse_iso|date:'d/m/Y'}}</td>
+                    <td> {{v.about}}</td>
+                    <td>{{v.details}}</td>
+                    <td><a href="{% url 'viewmentordetailsfromcomplaintsGA' v.mentor_id.id%}" class="btn" style="background: #1bbd36;color: white;">Mentor Details</a></td>
+                    <td><a href="{% url 'viewuserdetailsfromcomplaintsGA' v.user_id.id%}" class="btn" style="background: #1bbd36;color: white;">User Details</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            {% else %}
+                <div class="text-center">List is empty</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

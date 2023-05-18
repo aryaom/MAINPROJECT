@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <script src="/static/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+        $("#txtuname").change(function(){
+            uname=$("#txtuname").val();
+
+            $.ajax({
+
+            url:"{% url 'checkUsernameUSER' %}",
+            data:{'username':uname},
+            success:function(data)
+            {
+            if(data.k1=="exists")
+            {
+            alert("Already exists");
+            $("#btnsave").hide();
+            }
+            else
+            {
+            alert("valid username!");
+            $("#btnsave").show();
+            }
+            }
+            });
+            });
+            });
+    </script>
+
+
+<script type="text/javascript">
+		function validation()
+		{
+			var alpha=/^[a-zA-Z]+$/;
+			var num=/^[0-9]+$/;
+
+			var alphanum=/^(?=.*[a-zA-Z])(?=.*[0-9])/; //atleast one digit
+
+			var email=/^[\w\-\.\+]+\@[a-z A-Z 0-9\.\-]+\.[a-z A-Z 0-9]{2,4}$/;
+
+			var fname=document.getElementById("fname");
+			var lname=document.getElementById("lname");
+			var loc=document.getElementById("txtlocation");
+			var pin=document.getElementById("txtpincode");
+			var mail=document.getElementById("txtemail");
+			var phn=document.getElementById("txtphn");
+			var qual=document.getElementById("qualification");
+			var exp=document.getElementById("experience");
+			var desig=document.getElementById("designation");
+			var com=document.getElementById("cname");
+			var user=document.getElementById("txtuname");
+			var pwd=document.getElementById("pwd");
+
+		if(fname.value.length==0)
+			{
+				alert("Please Enter your first name ");
+				return false;
+			}
+			else if(!fname.value.match(alpha))
+			{
+				alert("invalid name");
+				nam.focus();
+				return false;
+			}
+		else if(lname.value.length==0)
+			{
+				alert("last name field cannot be null");
+				return false;
+			}
+			else if(!lname.value.match(alpha))
+			{
+				alert("invalid name");
+				plc.focus();
+				return false;
+			}
+		else if(loc.value.length==0)
+			{
+				alert("location field cannot be null");
+				return false;
+			}
+			else if(!loc.value.match(alpha))
+			{
+				alert("invalid location");
+				plc.focus();
+				return false;
+			}
+		else if(pin.value.length==0)
+			{
+				alert("location field cannot be null");
+				return false;
+			}
+			else if(!pin.value.match(alpha))
+			{
+				alert("invalid location");
+				plc.focus();
+				return false;
+			}
+		else if(mail.value.length==0)
+			{
+				alert("location field cannot be null");
+				return false;
+			}
+			else if(!mail.value.match(alpha))
+			{
+				alert("invalid location");
+				plc.focus();
+				return false;
+			}
+		else if(phn.value.length==0)
+			{
+				alert("location field cannot be null");
+				return false;
+			}
+			else if(!phn.value.match(alpha))
+			{
+				alert("invalid location");
+				plc.focus();
+				return false;
+			}
+        else
+			{
+				return true;
+			}
+		}
+</script>
+
+<section style="margin-top:50px;background:url(../static/reg1.jpg);box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover">
+	
+	<div class="container" style="">
+		
+		<div class="text-center" style="color:white;margin-top:30px"><h2>Create Your Account</h2></div>
+			<div class="row" style="margin:0 auto;width:60%;margin-top:20px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+
+
+    
+                    <form method="POST" action="{% url 'userregistrationaction' %}" style="width:90%;margin-bottom:40px;margin:20px auto" id="register-form">
+                        {% csrf_token %}
+                        <h2>  </h2>
+                        <div class="row">
+			  <div class="col">
+                            <div class="form-group">
+                                <label for="name" style="color:white">FIRST NAME :</label>
+                                <input type="text" name="fname" id="name" class="form-control" required/>
+                            </div>
+			  </div>
+			  <div class="col">
+                            <div class="form-group">
+                                <label for="name" style="color:white">LAST NAME :</label>
+                                <input type="text" name="lname" id="lname" class="form-control" required/>
+                            </div>
+			  </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender" class="radio-label" style="color:white">GENDER :</label>
+				<div class="form-control">
+                            
+                                <input type="radio" name="radgender" id="male" checked>
+                                <label for="male">Male</label>
+                                <span class="check"></span>
+                            
+                            
+                                <input type="radio" name="radgender" id="female">
+                                <label for="female">Female</label>
+                                <span class="check"></span>
+                            
+				</div>
+                        </div>
+                        <div class="form-group">
+                                <label for="name" style="color:white"> LOCATION :</label>
+                                <input type="text" name="txtlocation" class="form-control" id="location" required/>
+                            </div>
+
+                        <div class="form-group">
+                                <label for="name" style="color:white"> PIN CODE :</label>
+                                <input type="text" name="txtpincode" class="form-control" id="pin" required/>
+                            </div>
+
+                         <div class="form-group">
+                                <label for="name" style="color:white"> EMAIL ID :</label>
+                                <input type="email" name="txtemail" class="form-control" id="mail" required/>
+                            </div>
+                         <div class="form-group">
+                                <label for="name" style="color:white"> PHONE NO :</label>
+                                <input type="text" name="txtphn" class="form-control" id="phn" required/>
+                            </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="qualification" style="color:white">QUALIFICATION :</label>
+                                
+                                    <select name="qualification" id="q" class="form-control">
+                                        <option value="">--select--</option>
+                                        <option value="mca">MCA</option>
+                                        <option value="bca">BCA</option>
+                                        <option value="btec">BTEC</option>
+                                        <option value="mcom">MCOM</option>
+                                        <option value="bcom">BCOM</option>
+                                        <option value="bba">BBA</option>
+                                        <option value="mba">MBA</option>
+                                        <option value="ba">BA</option>
+                                        <option value="ma">MA</option>
+                                    </select>
+                                    
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="experience" style="color:white">EXPERIENCE :</label>
+                                
+                                    <select name="experience" id="experience" class="form-control">
+                                        <option value="">--select--</option>
+									    <option value="0yr">0 yr </option>
+                                        <option value="1yr">1 yr </option>
+                                        <option value="2yr">2 yr</option>
+                                        <option value="3yr">3 yr</option>
+                                    </select>
+                                    
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" style="color:white"> USERNAME :</label>
+                            <input type="name" name="txtuname" id="txtuname"  class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" style="color:white">PASSWORD:</label>
+                            <input type="password" name="pwd" id="pwd" class="form-control" />
+                        </div>
+                        <div class="text-center" style="margin-top:30px">
+                            
+		
+                            <input type="submit" value="Signup" class="btn" style="background:#1bbd36;color:white" name="submit" id="btnsave" onclick="return validation()"/>
+                        </div>
+                    </form>
+          
+		</div>
+	</div>
+</section>
+{% if msg %}
+<script>alert('{{msg}}');</script>
+{% endif %}
+{% endblock %}

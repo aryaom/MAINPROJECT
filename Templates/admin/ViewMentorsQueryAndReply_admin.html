@@ -1,0 +1,80 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+{% load static %}
+
+    <script src="/static/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+        $("#group").change(function(){
+            group=$("#group").val();
+
+            $.ajax({
+
+            url:"{% url 'getMentors' %}",
+            data:{'groups':group},
+            success:function(data)
+            {
+
+            $("#ddlMentors").html(data);
+            $("#replyandquery").empty();
+            }
+
+            });
+            });
+
+        $("#ddlMentors").change(function(){
+        //alert("hello")
+            mentor=$("#ddlMentors").val();
+
+            $.ajax({
+
+            url:"{% url 'getQueriesAndReply' %}",
+            data:{'mentor_id':mentor},
+            success:function(data)
+            {
+
+                //alert(data);
+            $("#replyandquery").html(data);
+            }
+
+            });
+            });
+
+
+
+            });
+
+    </script>
+    <section style="margin-top:50px;min-height: 500px;">
+        <div class="container" style="margin:80px auto">
+            <div class="text-center" style="margin-top:30px"><h3>Queries and Replies</h3></div>
+            <div class="row" style="margin:0 auto;width:100%;margin-top:20px;">
+                <form method="post" action="{% url 'blockmentorsSA' %}" style="margin:0 auto;width:120%;margin-bottom:40px;margin:20px auto">
+                    {% csrf_token %}
+                    
+                        <div class="form-group" style="margin:0 auto;width:40%">
+                            <label for="website">Group</label>
+                                <select name="group" id="group" class="form-control">
+                                    <option value="00">--select--</option>
+                                    {% for g in group %}
+                                        <option value="{{g.groups}}">{{g.groups}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                        <div class="form-group" style="padding-top: 20px;margin:0 auto;width:40%">
+                            <label for="website">Mentor</label>
+                             <select name="ddlMentors" id="ddlMentors" class="form-control">
+                             </select>
+                        </div>
+                        <div id="replyandquery" style="margin-top:30px;width:100%">
+                        </div>
+                    
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

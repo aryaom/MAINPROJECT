@@ -1,0 +1,117 @@
+{% extends 'groupadmin/base.html' %}
+{% block content %}
+   <script src="/static/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+       
+        $("#uname").change(function(){
+            uname=$("#uname").val();
+
+            $.ajax({
+
+            url:"{% url 'checkUsernameMENTOR' %}",
+            data:{'username':uname},
+            success:function(data)
+            {
+            if(data.k1=="exists")
+            {
+            alert("Already exists");
+            $("#uname").val('');
+            }
+           
+            }
+            });
+            });
+            });
+
+    </script>
+
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container" style="margin:80px auto">
+        <div class="text-center" style="margin-top:30px"><h3>Add Mentors</h3></div>
+        <div class="row" style="margin:0 auto;width:60%;margin-top:20px;">
+            <form method="post" action="{% url 'addmentoraction' %}" style="width:60%;margin-bottom:40px;margin:20px auto" id="register-form">
+                {% csrf_token %}
+
+
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="name">MENTOR NAME:</label>
+                    <input type="text" name="mname" id="name" class="form-control" required/>
+                </div>
+                <div class="form-group"  style="padding-top: 20px;">
+                    <label for="gender" class="radio-label">Gender :</label>
+                    <div class="form-control">
+                    
+                        <input type="radio" name="radgender" value="M" id="male" checked>
+                        <label for="male">Male</label>
+                        <span class="check"></span>
+                    
+                    
+                        <input type="radio"name="radgender" value="F" id="female">
+                        <label for="female">Female</label>
+                        <span class="check"></span>
+                    
+                    </div>
+                </div>
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="name"> LOCATION :</label>
+                    <input type="text" name="txtlocation" id="location" class="form-control" required/>
+                </div>
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="name"> EMAIL ID :</label>
+                                <input type="email" name="txtemail" class="form-control" id="mail" required/>
+                </div>
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="name"> PHONE NO :</label>
+                                <input type="text" name="txtphn" class="form-control" id="phn" required/>
+                </div>
+                
+                    <div class="form-group" style="padding-top: 20px;">
+                        <label for="qualification">QUALIFICATION :</label>
+                        
+                        <select name="qualification" id="q" class="form-control" required>
+                            <option value="">---Select---</option>
+                            <option value="bca">BCA</option>
+                            <option value="bsc">BSc</option>
+                            <option value="btec">BTECH</option>
+                            <option value="mca">MCA</option>
+                            <option value="msc">MSc</option>
+                            <option value="mtech">MTECH</option>
+                        </select>
+                            
+                        
+                    </div>
+                    <div class="form-group" style="padding-top: 20px;">
+                        <label for="experience">EXPERIENCE :</label>
+                        
+                        <select name="experience" id="experience" class="form-control" required>
+                            <option value="">---select---</option>
+                            <option value="1yr">1 yr </option>
+                            <option value="2yr">2 yr</option>
+                            <option value="3yr">3 yr</option>
+                        </select>
+                            
+                        
+                    </div>
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="name"> USERNAME :</label>
+                            <input type="name" name="txtuname" id="txtuname" class="form-control" />
+                <div class="form-group" style="padding-top: 20px;">
+                    <label for="pwd">PASSWORD:</label>
+                    <input type="password" name="pwd" id="pwd" class="form-control" />
+                </div>
+               
+                <div class="text-center" style="margin-top:30px">
+                            
+                    <input type="submit"  value="Submit Form" class="btn" style="background:#1bbd36;color:white;padding-left: 20px;padding-right: 20px;" name="submit" id="btnsave"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% if msg %}
+<script>alert('{{msg}}');</script>
+{% endif %}
+  {% endblock %}

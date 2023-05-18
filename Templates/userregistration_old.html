@@ -1,0 +1,169 @@
+{% extends 'Register_base.html' %}
+{% block content %}
+
+
+
+
+
+
+<form method="post" action="{% url 'userregistrationaction' %}">
+  {% csrf_token %}
+<table width="200" border="1">
+    <h1>Create Your Account</h1>
+  <tr>
+    <td>FIRST NAME:</td>
+    <td><input type="text" name="fname"></td>
+  </tr>
+    <tr>
+    <td>LAST NAME:</td>
+    <td><input type="text" name="lname"></td>
+  </tr>
+  <td>GENDER:</td>
+        <td> MALE <input type="radio" name="radgender" value="M"></BR>
+               FEMALE <input type="radio" name="radgender" value="F"></td>
+  <tr>
+    <td>LOCATION:</td>
+    <td><input type="text" name="txtlocation"></td>
+  </tr>
+  <tr>
+    <td>PIN CODE:</td>
+    <td><input type="text" name="txtpincode"></td>
+  </tr>
+  <tr>
+    <td>EMAIL ID</td>
+    <td><input type="text" name="txtemail">
+    </td>
+  </tr>
+  <tr>
+    <td>PHONE NO</td>
+    <td><input type="text" name="txtphn"></td>
+  </tr>
+  <tr>
+    <td>QUALIFICATION</td>
+    <td><select name="qualification" >
+    <option>MCA</option>
+    <option>BCA</option>
+    <option>BTEC</option>
+      <option>MCOM</option>
+    <option>BCOM</option>
+    <option>BBA</option>
+      <option>MBA</option>
+    <option>BA</option>
+    <option>MA</option>
+</select></td>
+  </tr>
+
+  <tr><td>EXPERIENCE:</td>
+<td><select name="experience">
+    <option>1 yr</option>
+    <option>2 yr</option>
+    <option>3 yr</option>
+</select></br>
+        </td></tr>
+
+  <tr>
+    <td>DESIGNATION:</td>
+    <td><input type="text" name="designation"></td>
+  </tr>
+
+  <tr>
+    <td>COMPANY NAME:</td>
+    <td><input type="text" name="cname"></td>
+  </tr>
+
+  <tr>
+    <td>USERNAME</td>
+    <td><input type='text' name='txtuname' id="uname"></td>
+  </tr>
+  <tr>
+    <td>PASSWORD</td>
+    <td><input type='password' name='pwd' id="pwd"></td>
+  </tr>
+
+</table>
+
+    <input type="submit" value="register" id="btnsave">
+
+
+
+
+
+<div class="row">
+          <div class="col-lg-12 mb-5">
+            <form action="#" method="post">
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <input type="text" class="form-control"  placeholder="First name">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="First name">
+                </div>
+              </div>
+<div class="form-group row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <input type="radio" name="radgender" value="M">
+    FEMALE
+    <input type="radio" name="radgender" value="F">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="First name">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="Email address">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 mr-auto">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-2 px-5" value="Send Message">
+                </div>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+</form>
+{% load static %}
+
+
+  <script src="/static/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+       
+        $("#uname").change(function(){
+            uname=$("#uname").val();
+
+            $.ajax({
+
+            url:"{% url 'checkUsernameUSER' %}",
+            data:{'username':uname},
+            success:function(data)
+            {
+            if(data.k1=="exists")
+            {
+            alert("Already exists");
+            $("#btnsave").hide();
+            }
+            else
+            {
+            alert("valid username!");
+            $("#btnsave").show();
+            }
+            }
+            });
+            });
+            });
+
+
+
+    </script>
+
+{% endblock %}

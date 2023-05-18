@@ -1,0 +1,127 @@
+{% extends 'users/base.html'%}
+{% block content %}
+
+<section style="margin-top:50px;">
+	
+	<div class="container">
+		
+		<div class="text-center" style="margin-top:30px"><h3>Profile</h3></div>
+			<div class="row" style="margin:0 auto;width:60%;margin-top:20px;">
+
+
+
+    
+                    <form method="POST" action="{% url 'viewprofileUSERaction' %}" style="width:90%;margin-bottom:40px;margin:20px auto" id="register-form">
+                        {% csrf_token %}
+                       
+                        {% for v in data %}
+                        <div class="row">
+			                    <div class="col">
+                            <div class="form-group">
+                                <label for="name">FIRST NAME :</label>
+                                <input type="text"  name="txtfname" value="{{v.fname}}" id="name" class="form-control" required/>
+                            </div>
+			                    </div>
+			                    <div class="col">
+                            <div class="form-group">
+                                <label for="name">LAST NAME :</label>
+                                <input type="text" name="lname" value="{{v.lastname}}" id="lname" class="form-control" required/>
+                            </div>
+			                    </div>
+
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="gender" class="radio-label">GENDER :</label>
+				                    <div class="form-control">
+                            
+                              <label for="website">Male</label>
+                              <input type="radio" name="radgender" value="M"
+                             {% if v.gender == 'M'%}
+                                     checked {% endif %}>
+                             <label for="website">Female</label>
+                             <input type="radio" name="radgender" value="F"
+                             {% if v.gender == 'F'%}
+                                     checked {% endif %}>
+                            
+				                    </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                                <label for="name"> LOCATION :</label>
+                                <input type="text" name="txtlocation" value="{{v.location}}" class="form-control" id="location" required/>
+                            </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                                <label for="name"> PIN CODE :</label>
+                                <input type="text" name="txtpincode" value="{{v.pincode}}" class="form-control" id="pin" required/>
+                            </div>
+
+                         <div class="form-group" style="margin-top: 20px;">
+                                <label for="name"> EMAIL ID :</label>
+                                <input type="email" name="txtemail" value="{{v.mailid}}" class="form-control" id="mail" required/>
+                            </div>
+                         <div class="form-group" style="margin-top: 20px;">
+                                <label for="name"> PHONE NO :</label>
+                                <input type="text" name="txtphn" value="{{v.phonenum}}" class="form-control" id="phn" required/>
+                            </div>
+
+
+                        <div class="form-row" style="margin-top: 20px;">
+                            <div class="form-group">
+                                <label for="qualification">QUALIFICATION :</label>
+                                
+                                <select name="qualification" class="form-control" required>
+                                  <option {% if v.qualification == 'MCA'%} selected {% endif %}>MCA</option>
+                                  <option {% if v.qualification == 'BCA'%} selected {% endif %}>BCA</option>
+                                  <option {% if v.qualification == 'BTEC'%} selected {% endif %}>BTEC</option>
+                                  <option {% if v.qualification == 'MCOM'%} selected {% endif %}>MCOM</option>
+                                  <option {% if v.qualification == 'BCOM'%} selected {% endif %}>BCOM</option>
+                                  <option {% if v.qualification == 'BBA'%} selected {% endif %}>BBA</option>
+                                  <option {% if v.qualification == 'MBA'%} selected {% endif %}>MBA</option>
+                                  <option {% if v.qualification == 'BA'%} selected {% endif %}>BA</option>
+                                       <option {% if v.qualification == 'MA'%} selected {% endif %}>MA</option>
+                                   </select>
+                                    
+                                
+                            </div>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="experience">EXPERIENCE :</label>
+                                
+                                <select name="experience" class="form-control" required>
+                                  <option {% if v.experience == '1 yr'%} selected {% endif %}>1 yr</option>
+                                  <option {% if v.experience == '2 yr'%} selected {% endif %}>2 yr</option>
+                                  <option {% if v.experience == '3 yr'%} selected {% endif %}>3 yr</option>
+                                  </select>
+                                    
+                                
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="birth_date">DESIGNATION :</label>
+                            <input type="text" name="designation" value="{{v.designation}}" id="designation" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="pincode">COMPANY NAME :</label>
+                            <input type="text" name="cname" value="{{v.companyname}}" id="pincode" class="form-control" required>
+                        </div>
+
+                       
+                        {% endfor %}
+                        <div class="text-center" style="margin-top:30px">
+                            
+		
+                            <input type="submit" value="Update" class="btn" style="background:#1bbd36;color:white" name="submit" id="btnsave"/>
+                        </div>
+                    </form>
+          
+		</div>
+	</div>
+</section>
+
+
+
+     {% if msg %}
+    <script>alert('{{msg}}');</script>
+    {% endif %}
+
+{% endblock %}

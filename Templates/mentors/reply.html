@@ -1,0 +1,54 @@
+{% extends 'mentors/base.html'%}
+{% block content %}
+
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container" style="margin:80px auto">
+        <div class="text-center" style="margin-top:30px"><h3>Reply</h3></div>
+        <div class="row" style="margin:0 auto;width:60%;margin-top:20px;">
+            <form method="post" action="{% url 'replyactionMENTOR' %}" style="width:60%;margin-bottom:40px;margin:20px auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for v in data %}
+                    <div class="form-group" style="margin-top: 10px;">
+
+                            <input type="hidden" name="hdn" id="hdn" value="{{v.id}}">
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="website">Subject  :</label>
+                    {{v.queryid.subject}}
+                </div>
+                {% endfor %}
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="website">Reply</label>
+                        <textarea name="txtreply" rows="10" cols="20" class="form-control" required></textarea>
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="website">File Upload</label>
+                     <input type="file" name="upload" id="upload" class="form-control">
+                </div>
+                <div class="text-center" style="margin-top:30px">
+                            
+                    <input type="submit" value="Reply" class="btn" style="background:#1bbd36;color:white;padding-left: 20px;padding-right: 20px;" name="submit" id="btnsave" onclick="return validation()"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+    {% if msg %}
+    <script>
+        alert("Your reply send successfully");
+    </script>
+    {% endif %}
+
+
+   {% if msg_invalid %}
+    <script>
+        alert("Uploaded reply is invalid");
+    </script>
+    {% endif %}
+
+
+{% endblock %}

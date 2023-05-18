@@ -1,0 +1,51 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container">'
+        <div class="text-center"><h3>Blocked Mentors</h3></div>
+        <div class="row" style="margin:0 auto;width:100%;margin-top:20px;">
+            {%if data%}
+            <div>
+                <table style="border:1px solid #1bbd36;width:100%;margin-top: 30px;">
+                    <thead style="color: white;background: #1bbd36;text-align: center;height: 40px;">
+                    <tr >
+                        <th>Mentor Name</th>
+                        <th>Group</th>
+                       <th>Gender</th>
+                        <th>Location</th>
+                        <th>Email Id</th>
+                        <th>Phone</th>
+                        <th>Qualification</th>
+                        <th>Experience</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;"> 
+                {% for v in data %}
+                <tr  style="border-bottom:1px solid #1bbd36;height:50px">
+                    <td>{{v.mentorname}}</td>
+                    <td>{{v.grpadmin_id.group}}</td>
+                    <td>{{v.gender}}</td>
+                    <td>{{v.location}}</td>
+                    <td>{{v.emailid}}</td>
+                    <td>{{v.phoneno}}</td>
+                    <td>{{v.qualification}}</td>
+                    <td>{{v.experience}}</td>
+                        <td><a href="{% url 'unblockmentors' v.id %}" class="btn" style="background: #1bbd36;color: white;">Unblock</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            {% else %}
+                <div class="text-center">List is empty</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

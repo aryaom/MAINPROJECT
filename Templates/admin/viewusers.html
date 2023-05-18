@@ -1,0 +1,49 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container">'
+        <div class="text-center"><h3>Users</h3></div>
+        <div class="row" style="margin:0 auto;width:100%;margin-top:20px;">
+            {%if data%}
+            <div>
+                <table style="border:1px solid #1bbd36;width:100%">
+                    <thead style="color: white;background: #1bbd36;text-align: center;height: 40px;">
+                    <tr >
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th >Location</th>
+                        <th >Email Id</th>
+                        <th >Phone</th>
+                        <th >Qualification</th>
+                        <th >Experience</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;"> 
+                {% for v in data %}
+                <tr  style="border-bottom:1px solid #1bbd36;height:50px">
+                <td >{{v.fname}}</td>
+                <td >{{v.lastname}}</td>
+                <td >{{v.location}}</td>
+                <td >{{v.mailid}}</td>
+                <td >{{v.phonenum}}</td>
+                <td >{{v.qualification}}</td>
+                <td >{{v.experience}}</td>
+                <td>
+                    <a href="{% url 'deleteuser' v.id %}" class="btn" style="background: #1bbd36;color: white;">Delete</a>
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            {% else %}
+                <div class="text-center">List is empty</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

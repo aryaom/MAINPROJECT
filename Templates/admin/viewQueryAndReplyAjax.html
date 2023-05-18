@@ -1,0 +1,37 @@
+<div class="text-center"><input type="submit" value="Block" class="btn btn-primary"></div>
+<section id="testimonials" class="testimonials section-bg" style="margin-top:30px">
+  <div class="container">
+
+    <div class="row">
+        {% for v in data %}
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="testimonial-item mt-4">
+            <img src="/static/coach/images/question.jpg" class="testimonial-img" alt="">
+            <h3>{{v.query_id.subject}}</h3>
+            <h4>{{v.query_id.date}}</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              {{v.query_id.addquery}}
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+            <p><a href="{{v.query_id.fileupload.url}}" download="{{v.query_id.fileupload.url}}">{{v.query_id.fileupload}}</a></p>
+            <div
+              style="box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);padding: 20px;margin-top:10px">
+              <h5 style="margin-top: 10px;color:black;font-weight: bolder;">Replies</h5>
+              <p>{{v.reply}}</p>
+              <p><a href="{{v.fileupload.url}}" download="{{v.fileupload.url}}">{{v.fileupload}}</a></p>
+              <p>Post Status:{{v.status_post}}</p>
+              <p>Upload Status:{{v.status_file}}</p>
+              <p>{{v.date}}</p> 
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="text-center">
+          Nothing to display  
+        </div>
+        {% endfor %}
+    </div>
+
+  </div>
+</section>

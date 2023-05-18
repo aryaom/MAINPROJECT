@@ -1,0 +1,43 @@
+{% extends 'mentors/base.html'%}
+{% block content %}
+
+<section id="testimonials" class="testimonials section-bg" style="margin-top:50px;min-height: 500px;">
+  <div class="container">
+    <div class="text-center"><h3>Queries</h3></div>
+    {% if data %}
+    <div class="row">
+      {% for v in data %}
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="testimonial-item mt-4">
+          <img src="/static/coach/images/question.jpg" class="testimonial-img" alt="">
+          <h3>{{v.queryid.subject}}</h3>
+          <h4>{{v.queryid.date}}</h4>
+          <p>
+            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+            {{v.queryid.addquery}}
+            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+          </p>
+          {% if v.queryid.fileupload != 'No File'%}
+          <p>Download attachment:<a href="{{v.queryid.fileupload.url}}" download="{{v.queryid.fileupload.url}}">{{v.queryid.fileupload}}</a></p>
+          {% else %}
+          <p>No Attachment</p>
+          {% endif %}
+          <div class="text-center" style="margin-top: 20px;"><a href="{% url 'replyMENTOR' v.id %}" class="btn"style="background: #1bbd36;color: white;">Reply</a></div>
+           </div>
+        </div>
+      
+      {% endfor %}
+      
+    </div>
+    
+    {% else %}
+    <div class="text-center">Empty</div>
+    {% endif %}
+  </div>
+</div>
+</section>
+
+
+
+
+{% endblock %}

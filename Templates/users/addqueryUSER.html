@@ -1,0 +1,52 @@
+{% extends 'users/base.html'%}
+{% block content %}
+
+<section style="margin-top:50px;min-height: 500px;">
+    <div class="container" style="margin:80px auto">
+        <div class="text-center" style="margin-top:30px"><h3>Add Query</h3></div>
+        <div class="row" style="margin:0 auto;width:60%;margin-top:20px;">
+            <form method="post" action="{% url 'addqueryactionUSER' %}" style="width:60%;margin-bottom:40px;margin:20px auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="txtsubject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="query">Query</label>
+                    <textarea rows="10" cols="60" name="txtaddquery" class="form-control" required ></textarea>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Fileupload">File upload</label>
+                    <input type="file" name="upload" id="upload" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="group">Group</label>
+                    <select name="group" class="form-control" required>
+                        <option value="">select</option>
+                        {% for c in group %}
+                            <option value="{{c.groups}}">{{c.groups}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="text-center" style="margin-top:30px">
+                            
+                    <input type="submit" value="Add" class="btn" style="background:#1bbd36;color:white;padding-left: 20px;padding-right: 20px;" name="submit" id="btnsave"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+{% if msg %}
+   <script>
+   alert("query added successfully");
+</script>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'groupadmin/Register_baseSECOND.html'%}
+{% block content %}
+groupadmin home
+<a href="{% url 'viewprofile' %}">
+    view my profile
+</a></br>
+<a href="{% url 'addmentors' %}">
+    add mentors
+</a></br>
+<a href="{% url 'viewmentors' %}">
+    view mentors
+</a>
+</br>
+<a href="{% url 'changepwdGA'%}">
+    change password
+</a>
+</br>
+<a href="{% url 'viewqueryGA'%}">
+    view query
+</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'mentors/Register_base.html'%}
+{% block content %}
+<a href="{% url 'changepwdMENTOR'%}">
+    change password
+</a><br>
+<a href="{% url 'viewprofileMENTOR'%}">
+    view profile
+</a><br>
+
+<br>
+<a href="{% url 'viewallocatedqueryM'%}">
+    view allocated query
+</a>
+<br><a href="{% url 'viewqueryandreplyMENTOR'%}">
+    view query
+</a>
+{% endblock %}
